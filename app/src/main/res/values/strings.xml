@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SkyengTest</string>
+    <string name="loading_error_text">Ошибка загрузки данных</string>
+    <string name="enter_word_part">Начните вводить слово</string>
+    <string name="empty_search_text">Ничего не найдено</string>
+</resources>

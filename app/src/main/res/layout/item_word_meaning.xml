@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_white_selectable"
+    android:padding="@dimen/spacing_small">
+
+    <FrameLayout
+        android:id="@+id/llMeaningPreviewContainer"
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:gravity="center">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMeaningCount"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/background_meaning_count"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingHorizontal="@dimen/spacing_smallest"
+            android:paddingVertical="@dimen/spacing_smallest"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_big"
+            app:autoSizeMinTextSize="5sp"
+            app:autoSizeStepGranularity="2sp"
+            app:autoSizeTextType="uniform"
+            app:fontFamily="sans-serif-light"
+            tools:text="1234" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivMeaningPreview"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/llMeaningPreviewContainer"
+        android:layout_toRightOf="@id/llMeaningPreviewContainer"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvWord"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            tools:text="test" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMeanings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_small"
+            android:ellipsize="marquee"
+            tools:visibility="gone"
+            android:singleLine="true"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"
+            tools:text="test" />
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivArrow"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/spacing_small"
+        app:srcCompat="@drawable/ic_down_arrow" />
+
+</RelativeLayout>

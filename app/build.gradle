@@ -1,0 +1,153 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization' version "$kotlinVersion"
+}
+
+ext {
+    recyclerView = '1.1.0'
+    dagger = '2.27'
+    assistedInject = '0.5.2'
+    moxy = '2.1.2'
+    constraintLayout = '1.1.3'
+    glide = '4.9.0'
+
+    kotlinxSerializationRuntime = '0.20.0'
+
+    kotlinxRetrofitAdapter = '0.5.0'
+    retrofit = '2.9.0'
+
+    rxJava = '2.2.9'
+    rxAndroid = '2.1.1'
+    rxKotlin = '2.3.0'
+
+    minSdkVer = 16
+    targetSdkVer = 29
+    compileSdkVer = 29
+    buildToolsVer = "29.0.3"
+
+    mockk = '1.9.3'
+
+}
+
+android {
+    compileSdkVersion compileSdkVer
+    buildToolsVersion buildToolsVer
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('key/skyeng_test')
+            storePassword '123456'
+        }
+    }
+
+    defaultConfig {
+        applicationId "ru.valya1.skyengtest"
+        minSdkVersion minSdkVer
+        targetSdkVersion targetSdkVer
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+
+        buildConfigField("String", "serverEndpoint", "\"https://dictionary.skyeng.ru/api/public/\"")
+
+    }
+
+
+    buildTypes {
+        debug {
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+
+    kapt {
+        correctErrorTypes = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.fragment:fragment-ktx:1.2.5'
+    implementation "com.google.android.material:material:1.1.0"
+
+
+    implementation "com.google.dagger:dagger:$dagger"
+    kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    implementation "com.google.dagger:dagger-android:$dagger"
+    implementation "com.google.dagger:dagger-android-support:$dagger"
+    kapt "com.google.dagger:dagger-android-processor:$dagger"
+
+
+    implementation "com.github.bumptech.glide:okhttp3-integration:$glide"
+    implementation "com.github.bumptech.glide:glide:$glide"
+    implementation "com.github.bumptech.glide:annotations:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
+
+    compileOnly "com.squareup.inject:assisted-inject-annotations:$assistedInject"
+    kapt "com.squareup.inject:assisted-inject-processor:$assistedInject"
+    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$assistedInject"
+    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$assistedInject"
+
+
+    implementation "com.github.moxy-community:moxy-ktx:$moxy"
+    implementation "com.github.moxy-community:moxy-androidx:$moxy"
+    kapt "com.github.moxy-community:moxy-compiler:$moxy"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxJava"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroid"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlin"
+
+
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerView"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$kotlinxSerializationRuntime"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:$kotlinxRetrofitAdapter"
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation "io.mockk:mockk:$mockk"
+    testImplementation "junit:junit:$mockk"
+
+}
