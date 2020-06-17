@@ -2,6 +2,8 @@ package ru.valya1.skyengtest.presentation.meanings_list
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import dagger.android.support.AndroidSupportInjection
@@ -44,7 +46,13 @@ class MeaningsListFragment :
                 return true
             }
             
-            override fun onQueryTextSubmit(query: String?): Boolean = true
+            override fun onQueryTextSubmit(query: String): Boolean {
+                meaningsListPresenter.submitQuery(query)
+                searchView?.clearFocus()
+                context?.getSystemService<InputMethodManager>()
+                    ?.hideSoftInputFromWindow(searchView.windowToken, 0)
+                return true
+            }
         })
         
         rvMeaningItems.adapter = meaningsListAdapter
